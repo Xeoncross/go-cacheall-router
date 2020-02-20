@@ -19,16 +19,6 @@ const APIResponse = "api"
 // MemoryHTTPFilesystem to pretend we are reading from a SPA directory
 var MemoryHTTPFilesystem *afero.HttpFs
 
-// IndexHandler would serve the index.html page built by the SPA
-// var IndexHandler = func(w http.ResponseWriter, r *http.Request) {
-// 	w.Write([]byte(IndexResponse))
-// }
-
-// // JavascriptHandler would serve the index.html page built by the SPA
-// var JavascriptHandler = func(w http.ResponseWriter, r *http.Request) {
-// 	w.Write([]byte(IndexResponse))
-// }
-
 // APIHandler would represent a response from the Go API
 var APIHandler = func(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(APIResponse))
@@ -57,6 +47,8 @@ func init() {
 	}
 
 	MemoryHTTPFilesystem = afero.NewHttpFs(fs)
+
+	// fmt.Printf("%#v\n", MemoryHTTPFilesystem)
 	// fileserver := http.FileServer(httpFs.Dir("templates"))
 	// http.Handle("/", fileserver)
 }
