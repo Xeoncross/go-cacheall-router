@@ -17,7 +17,7 @@ const JavascriptResponse = "document.write('JS loaded')"
 const APIResponse = "api"
 
 // MemoryHTTPFilesystem to pretend we are reading from a SPA directory
-var MemoryHTTPFilesystem *afero.HttpFs
+var MemoryHTTPFilesystem http.FileSystem
 
 // APIHandler would represent a response from the Go API
 var APIHandler = func(w http.ResponseWriter, r *http.Request) {

@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/xeoncross/go-cacheall-router/internal/gorilla"
+	"github.com/xeoncross/go-cacheall-router/internal/singlepageapp"
 )
 
 func TestHandlers(t *testing.T) {
@@ -25,13 +26,13 @@ func TestHandlers(t *testing.T) {
 		{
 			desc:     "index",
 			path:     "/",
-			handler:  http.FileServer(MemoryHTTPFilesystem),
+			handler:  http.FileServer(singlepageapp.FileSystem(MemoryHTTPFilesystem)),
 			response: IndexResponse,
 		},
 		{
 			desc:     "javascript",
 			path:     "/static/js/app.js",
-			handler:  http.StripPrefix("/static/", http.FileServer(MemoryHTTPFilesystem)),
+			handler:  http.StripPrefix("/static/", http.FileServer(singlepageapp.FileSystem(MemoryHTTPFilesystem))),
 			response: JavascriptResponse,
 		},
 	}
@@ -65,7 +66,7 @@ func TestHandlers(t *testing.T) {
 	}{
 		{
 			desc:    "gorilla/mux/",
-			handler: gorilla.Handler(MemoryHTTPFilesystem, APIHandler),
+			handler: gorilla.Handler(singlepageapp.FileSystem(MemoryHTTPFilesystem), APIHandler),
 		},
 	}
 
