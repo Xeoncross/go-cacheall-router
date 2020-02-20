@@ -27,7 +27,7 @@ var APIHandler = func(w http.ResponseWriter, r *http.Request) {
 func init() {
 	var fs = afero.NewMemMapFs()
 
-	file, err := fs.Create("build/index.html")
+	file, err := fs.Create("index.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,7 +40,7 @@ func init() {
 	// if err != nil {
 	// 	log.Fatal(err)
 	// }
-	file, err = fs.Create("build/js/app.js")
+	file, err = fs.Create("/js/app.js")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -51,8 +51,4 @@ func init() {
 	}
 
 	MemoryHTTPFilesystem = afero.NewHttpFs(fs)
-
-	// fmt.Printf("%#v\n", MemoryHTTPFilesystem)
-	// fileserver := http.FileServer(httpFs.Dir("templates"))
-	// http.Handle("/", fileserver)
 }

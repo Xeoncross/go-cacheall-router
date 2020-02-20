@@ -25,13 +25,13 @@ func TestHandlers(t *testing.T) {
 		{
 			desc:     "index",
 			path:     "/",
-			handler:  http.FileServer(MemoryHTTPFilesystem.Dir("build")),
+			handler:  http.FileServer(MemoryHTTPFilesystem),
 			response: IndexResponse,
 		},
 		{
 			desc:     "javascript",
 			path:     "/static/js/app.js",
-			handler:  http.FileServer(MemoryHTTPFilesystem.Dir("build")),
+			handler:  http.StripPrefix("/static/", http.FileServer(MemoryHTTPFilesystem)),
 			response: JavascriptResponse,
 		},
 	}
@@ -65,7 +65,7 @@ func TestHandlers(t *testing.T) {
 	}{
 		{
 			desc:    "gorilla/mux/",
-			handler: gorilla.Handler(MemoryHTTPFilesystem.Dir("build"), APIHandler),
+			handler: gorilla.Handler(MemoryHTTPFilesystem, APIHandler),
 		},
 	}
 
