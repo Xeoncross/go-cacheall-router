@@ -18,7 +18,6 @@ type spaFileSystem struct {
 func (fs *spaFileSystem) Open(name string) (http.File, error) {
 	f, err := fs.root.Open(name)
 	if os.IsNotExist(err) {
-		// fmt.Printf("Open: %q\n", name)
 		return fs.root.Open("index.html")
 	}
 	return f, err
