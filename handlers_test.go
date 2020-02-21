@@ -31,8 +31,8 @@ func TestHandlers(t *testing.T) {
 		},
 		{
 			desc:     "javascript",
-			path:     "/static/js/app.js",
-			handler:  http.StripPrefix("/static/", http.FileServer(singlepageapp.FileSystem(MemoryHTTPFilesystem))),
+			path:     "/js/app.js",
+			handler:  http.FileServer(singlepageapp.FileSystem(MemoryHTTPFilesystem)),
 			response: JavascriptResponse,
 		},
 	}

@@ -46,6 +46,6 @@ func Handler(dir http.FileSystem, api http.HandlerFunc) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api", http.HandlerFunc(api))
 	mux.Handle("/", http.FileServer(dir))
-	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(dir)))
+	// mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(dir)))
 	return mux
 }
